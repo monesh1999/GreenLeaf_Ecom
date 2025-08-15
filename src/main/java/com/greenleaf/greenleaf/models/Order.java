@@ -28,14 +28,14 @@ public Long getId() {
   /**
    * @return the user
    */
-  public User getUser() {
+  public Users getUser() {
 	return user;
   }
 
   /**
    * @param user the user to set
    */
-  public void setUser(User user) {
+  public void setUser(Users user) {
 	this.user = user;
   }
 
@@ -82,7 +82,7 @@ public Long getId() {
   }
 
   @ManyToOne
-  private User user;
+  private Users user;
 
   @OneToMany(cascade = CascadeType.ALL)
   private List<OrderItem> items;
