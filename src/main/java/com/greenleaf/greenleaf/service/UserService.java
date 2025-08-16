@@ -16,9 +16,10 @@ public class UserService {
 	@Autowired
 	UserRepository repo;
 
-	public void addUser(Users user) {
+	public Users addUser(Users user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		repo.save(user);
+		return user;
 	}
 	
 	

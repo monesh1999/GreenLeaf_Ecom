@@ -14,11 +14,10 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
-	@PostMapping("/add")
-	public void adduser(@RequestBody Users user) {
-		
-		service.addUser(user);
-		
-	}
+	
+	 @PostMapping("/register")
+	    public Users register(@RequestBody Users user) {
+	        return service.addUser(user);
 
+}
 }
