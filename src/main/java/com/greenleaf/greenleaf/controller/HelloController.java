@@ -14,6 +14,18 @@ public class HelloController {
 	    public String greet( HttpServletRequest request) {
 	        return "Welcome to code  | Session: " + request.getSession().getId();
 	    }
+	    
+	    @GetMapping("/hello")
+	    public String greeting( HttpServletRequest request) {
+	        return "Welcome to code  | Session: " + request.getSession().getId();
+	    }
+	    
+	    @GetMapping("/hi")
+	    public String greeted( HttpServletRequest request) {
+	        return "Welcome to code  | Session: " + request.getSession().getId();
+	    }
+	
+	
 	
 
 

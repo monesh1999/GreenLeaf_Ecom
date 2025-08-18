@@ -1,34 +1,55 @@
 package com.greenleaf.greenleaf.security;
 
 import java.util.Collection;
-import java.util.Collections; // ✅ Correct import
-
+import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import com.greenleaf.greenleaf.models.Users;
 
 public class UserPrincipal implements UserDetails {
-	
-	private Users user;
-	
-	public UserPrincipal(Users user) {
-		this.user = user;
-	}
+    
+    private final Users user;
+    
+    public UserPrincipal(Users user) {
+        this.user = user;
+    }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-	    return Collections.singletonList(new SimpleGrantedAuthority("USER"));
-	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Ensures Spring interprets roles correctly
+        return Collections.singletonList(
+            new SimpleGrantedAuthority("ROLE_" + user.getRole())
+        );
+    }
 
-	@Override
-	public String getPassword() {
-		return user.getPassword();
-	}
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
 
-	@Override
-	public String getUsername() {
-		return user.getUsername();
-	}
+    @Override
+    public String getUsername() {
+        return user.getUsername();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true; // you can make this dynamic if needed
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

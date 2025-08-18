@@ -10,7 +10,20 @@ public class Users {
 	private int id;
 	private String username;
 	private String password;
+	private String role;
 
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
 	/**
 	 * @return the id
 	 */
